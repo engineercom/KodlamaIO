@@ -46,16 +46,15 @@ public class CategoryDAL : IDAL<Category>
 
     public Category Update(Category category)
     {
-        foreach (var item in categories)
-        {
-            if (item.Id == category.Id)
-            {
-                item.Name = category.Name;
-                return category;  //updated
-            }
+       Category cat=  CategoryById(category.Id);
+        cat.Name = category.Name;
 
-        }
-        return category; //non-updated
+        return cat;
+
+    }
+    Category CategoryById(int id)
+    {
+        return categories.Find(x=>x.Id==id);
 
     }
 }
