@@ -27,15 +27,8 @@ public class CategoryDAL : IDAL<Category>
 
     public void Delete(int id)
     {
-        foreach (var item in categories)
-        {
-            if (item.Id == id)
-            {
-                categories.Remove(item);
-                break;
-            }
 
-        }
+        categories.Remove(CategoryById(id));
 
     }
 
