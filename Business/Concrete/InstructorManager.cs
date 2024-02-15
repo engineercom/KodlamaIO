@@ -15,25 +15,65 @@ public class InstructorManager : IManager<Instructor>
     IDAL<Instructor> _instructorDAL;
     public InstructorManager(IDAL<Instructor> instructorDAL)
     {
-        _instructorDAL= instructorDAL;
+        _instructorDAL = instructorDAL;
     }
     public Instructor Create(Instructor category)
     {
-        return _instructorDAL.Create(category);
+        try
+        {
+            return _instructorDAL.Create(category);
+        }
+        catch (Exception ex)
+        {
+            ExMessage(ex.Message);
+            throw ex;
+        }
     }
 
     public void Delete(int id)
     {
-        _instructorDAL.Delete(id);
+        try
+        {
+            _instructorDAL.Delete(id);
+        }
+        catch (Exception ex)
+        {
+
+            ExMessage(ex.Message);
+            throw ex;
+        }
     }
 
     public List<Instructor> GetAll()
     {
-        return _instructorDAL.GetAll();
+        try
+        {
+            return _instructorDAL.GetAll();
+        }
+        catch (Exception ex)
+        {
+
+            ExMessage(ex.Message);
+            throw ex;
+        }
     }
 
     public Instructor Update(Instructor category)
     {
-        return _instructorDAL.Update(category);
+        try
+        {
+            return _instructorDAL.Update(category);
+        }
+        catch (Exception ex)
+        {
+
+            ExMessage(ex.Message);
+            throw ex;
+        }
+    }
+    public void ExMessage(string ex)
+    {
+
+        Console.WriteLine(ex);
     }
 }
