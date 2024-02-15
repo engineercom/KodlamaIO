@@ -25,16 +25,7 @@ public class InstructorDAL : IDAL<Instructor>
 
     public void Delete(int id)
     {
-        foreach (var item in instructors)
-        {
-            if (item.Id == id)
-            {
-                instructors.Remove(item);
-                break;
-
-            }
-
-        }
+        instructors.Remove(InstructorById(id));
 
     }
 
@@ -45,15 +36,16 @@ public class InstructorDAL : IDAL<Instructor>
 
     public Instructor Update(Instructor instructor)
     {
-        foreach (var item in instructors)
-        {
-            if (item.Id == instructor.Id)
-            {
-                item.Name = instructor.Name;
-                return instructor;  //updated
-            }
 
-        }
-        return instructor; //non-updated
+     Instructor i= InstructorById(instructor.Id);
+        i.Name = instructor.Name;
+        i.SurName = instructor.SurName;
+        i.PhotoPath=instructor.PhotoPath;
+        return i;
+
+    }
+    public Instructor InstructorById(int id) {
+        return instructors.Find(x=>x.Id==id);
+   
     }
 }
